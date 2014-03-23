@@ -5,9 +5,23 @@ _REGEX = re.compile('^(?P<major>[0-9]+)'
                     '\.(?P<minor>[0-9]+)'
                     '\.(?P<patch>[0-9]+)$')
 
+def parse_version(version):
+    match = _REGEX.match(version)
+    if match is None:
+        raise ValueError('Invalid version: {}'.format(version))
+
+    version_info = {}
+    for level, number in match.groupdict().iteritems():
+        if number:
+            version_info[level] = int(number)
+        else:
+            version_info[level] = None
+    return version_info
+
+
 class VersionBump(object):
     def __init__(self, version):
-        self.version_info = self.parse(version)
+        self.version_info = parse_version(version)
 
     def __str__(self):
         ret = '<{} \'{}\'>'.format(self.__class__.__name__, self.get_version())
@@ -42,15 +56,3 @@ class VersionBump(object):
         """ Return value of given level. """
         return self.version_info[level]
 
-    def parse(self, version):
-        match = _REGEX.match(version)
-        if match is None:
-            raise ValueError('Invalid version: {}'.format(version))
-
-        version_info = {}
-        for level, number in match.groupdict().iteritems():
-            if number:
-                version_info[level] = int(number)
-            else:
-                version_info[level] = None
-        return version_info
