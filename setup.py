@@ -12,7 +12,7 @@ except ImportError:
 description = 'Bump versions based on semantic versioning rules'
 
 setup(name='versionbump',
-      version='0.0.1',
+      version='1.0.0',
       license='MIT',
       author='Fabian Kochem',
       url='https://github.com/vortec/versionbump',
