@@ -14,7 +14,7 @@ def step_impl(context, filename, text):
 
 @given(u'an empty file')
 def step_impl(context):
-    create_temp_file(context)
+    make_temp_file(context)
 
 @then(u'the file contains {text}')
 def step_impl(context, text):
@@ -32,7 +32,7 @@ def step_impl(context, filename, text):
 
 @then(u'the file is empty')
 def step_impl(context):
-    fp = get_temp_file(context, filename)
+    fp = get_temp_file(context)
     with open(fp, 'r') as fo:
         content = fo.read()
     assert content == ''
