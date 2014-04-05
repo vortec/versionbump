@@ -8,17 +8,40 @@ except ImportError:
     use_setuptools()
     from setuptools import setup, find_packages, Command
 
+
+description = 'Bump versions based on semantic versioning rules'
+
 setup(name='versionbump',
       version='0.0.1',
-      description='Bump versions based on semantic versioning rules',
+      license='MIT',
       author='Fabian Kochem',
+      url='https://github.com/vortec/versionbump',
+      description=description,
       packages=find_packages(),
       install_requires=[
 
       ],
       entry_points={
-        'console_scripts': [
+          'console_scripts': [
             'versionbump = versionbump.command_line:main',
-        ]
-    }
+          ]
+      },
+      classifiers=(
+          'Development Status :: 5 - Production/Stable',
+          'Environment :: Console',
+          'Intended Audience :: Developers'
+          'Intended Audience :: System Administrators',
+          'License :: OSI Approved :: MIT License',
+          'Programming Language :: Python',
+          'Programming Language :: Python :: 2',
+          'Programming Language :: Python :: 3',
+          'Programming Language :: Python :: 2.6',
+          'Programming Language :: Python :: 2.7',
+          'Programming Language :: Python :: 3.4',
+          'Programming Language :: Python :: Implementation :: PyPy',
+          'Topic :: Software Development :: Build Tools'
+          'Topic :: Software Development :: Libraries',
+          'Topic :: Software Development :: Libraries :: Python Modules',
+          'Topic :: Utilities'
+    ),
 )
