@@ -36,6 +36,10 @@ def test_cache_write_to_file():
     fo.seek(0)
     assert fo.read() == match_against
 
+def test_print_output(fb):
+    expected_string = '<FileBump \'{0}\'>'.format(test_version)
+    assert str(fb) == expected_string
+
 def test_it_doesnt_find_the_version():
     empty_fo = StringIO('')
     with pytest.raises(ValueError):

@@ -9,6 +9,11 @@ class FileBump(object):
         self.file_cache = self.fo.read()
         self.validate_cache()
 
+    def __str__(self):
+        ret = '<{0} \'{1}\'>'.format(self.__class__.__name__,
+                                     self.current_version)
+        return ret
+
     @property
     def current_version(self):
         return self.vb.get_version()
