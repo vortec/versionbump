@@ -1,13 +1,15 @@
 import pytest
 from versionbump import VersionBump
 
+test_version = '2.0.1'
+
 @pytest.fixture
 def vb():
-    return VersionBump('2.0.1')
+    return VersionBump(test_version)
 
 
 def test_same_version_after_parsing(vb):
-    assert vb.get_version() == '2.0.1'
+    assert vb.get_version() == test_version
 
 def test_level_access(vb):
     assert vb.get_level('major') == 2
@@ -25,7 +27,7 @@ def test_zeroize():
     assert vb.get_version() == '1.0.0'
 
 def test_print_output(vb):
-    expected_string = '<VersionBump \'{0}\'>'.format('2.0.1')
+    expected_string = '<VersionBump \'{0}\'>'.format(test_version)
     assert str(vb) == expected_string
 
 def test_invalid_version():
@@ -36,7 +38,6 @@ def test_get_invalid_level(vb):
     with pytest.raises(KeyError):
         vb.get_level('foo')
 
-def test_bump_invalid_level():
-    vb = VersionBump('2.0.1')
+def test_bump_invalid_level(vb):
     with pytest.raises(KeyError):
         vb.bump('foo')
