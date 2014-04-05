@@ -21,6 +21,13 @@ Usage
     usage: versionbump [-h] -c CURRENT [-q] [-i]
                    {major,minor,patch} [file [file ...]]
 
+Arguments
++++++++++
+- ``-c`` / ``--current``: Assume current version. (required)
+- ``-h`` / ``--help``: Print help text and exit.
+- ``-q`` / ``--quiet``: Don't write anything to stdout.
+- ``-i`` / ``--ignore``: Ignore invalid files
+
 Increase version
 ++++++++++++++++
 
@@ -32,7 +39,7 @@ Increase version
 Replace version in file(s)
 ++++++++++++++++++++++++++
 
-:: 
+::
 
     $ cat version.txt
     Current version: 0.1.2
@@ -45,14 +52,7 @@ If you want to replace the version string in more than one file, just pass them 
 
 ::
 
-    $ versionbump -c 0.1.2 major file1.txt file2.txt file3.txt 
-
-Arguments
-+++++++++
-- ``-c`` / ``--current``: Assume current version. (required)
-- ``-h`` / ``--help``: Print help text and exit.
-- ``-q`` / ``--quiet``: Don't write anything to stdout.
-- ``-i`` / ``--ignore``: Ignore invalid files
+    $ versionbump -c 0.1.2 major file1.txt file2.txt file3.txt
 
 Python library
 ==============
