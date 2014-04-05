@@ -1,2 +1,2 @@
-from versionbump import VersionBump
-from filebump import FileBump
+from .versionbump import VersionBump
+from .filebump import FileBump

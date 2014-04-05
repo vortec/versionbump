@@ -1,5 +1,8 @@
 import pytest
-from StringIO import StringIO
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 from versionbump import FileBump
 
 test_version = '2.4.1'

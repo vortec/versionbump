@@ -27,7 +27,6 @@ def test_zeroize():
 def test_print_output(vb):
     expected_string = '<VersionBump \'{}\'>'.format('2.0.1')
     assert str(vb) == expected_string
-    assert unicode(vb) == expected_string
 
 def test_invalid_version():
     with pytest.raises(ValueError):

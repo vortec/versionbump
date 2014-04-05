@@ -1,3 +1,3 @@
 def main():
-    print 'CLI'
+    print('CLI')
     raise SystemExit(9)

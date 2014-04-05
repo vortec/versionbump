@@ -11,7 +11,7 @@ def parse_version(version):
         raise ValueError('Invalid version: {}'.format(version))
 
     version_info = {}
-    for level, number in match.groupdict().iteritems():
+    for level, number in match.groupdict().items():
         if number:
             version_info[level] = int(number)
         else:
