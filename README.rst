@@ -2,7 +2,7 @@
 versionbump
 ============
 
-Helper tool to generate version strings based on semantic versioning rules. It provides a shell command for using in bash scripts and comes with Python classes which you can integrate in your code.
+Helper tool to generate version strings based on `semantic versioning <http://semver.org/>`_ rules. It provides a shell command for using in bash scripts and comes with Python classes which you can integrate in your code.
 
 
 Installation
@@ -64,8 +64,8 @@ VersionBump
 
     from versionbump import VersionBump
     vb = VersionBump('2.0.1')
-    vb.bump()  ## default value: 'patch'
-    print vb.get() ## 2.0.2
+    vb.bump()              ## default value: 'patch'
+    print vb.get()         ## 2.0.2
     print vb.get('patch')  ## 2
 
 FileBump
@@ -76,6 +76,11 @@ FileBump
     from versionbump import FileBump
     fo = open('version.txt', 'r+')
     fb = FileBump(fo, '2.0.1')
-    vb.bump()  ## default value: 'patch', writes to file
-    print vb.get() ## 2.0.2
+    vb.bump()              ## default value: 'patch', writes to file
+    print vb.get()         ## 2.0.2
     print vb.get('patch')  ## 2
+
+Alternatives
+============
+- `bumpversion <https://pypi.python.org/pypi/bumpversion>`_ by Filip Noetzel. Provides much more functionality like VCS integration.
+- `grunt-bump <https://github.com/vojtajina/grunt-bump>`_ by Vojta Jina. Integrates with the task runner grunt.
