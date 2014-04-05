@@ -18,7 +18,7 @@ setup(name='versionbump',
       ],
       entry_points={
         'console_scripts': [
-            'versionbump = versionbump:main',
+            'versionbump = versionbump.command_line:main',
         ]
     }
 )
