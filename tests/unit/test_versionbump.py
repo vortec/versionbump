@@ -25,7 +25,7 @@ def test_zeroize():
     assert vb.get_version() == '1.0.0'
 
 def test_print_output(vb):
-    expected_string = '<VersionBump \'{}\'>'.format('2.0.1')
+    expected_string = '<VersionBump \'{0}\'>'.format('2.0.1')
     assert str(vb) == expected_string
 
 def test_invalid_version():

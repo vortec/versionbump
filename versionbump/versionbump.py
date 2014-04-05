@@ -24,7 +24,8 @@ class VersionBump(object):
         self.version_info = parse_version(version)
 
     def __str__(self):
-        ret = '<{} \'{}\'>'.format(self.__class__.__name__, self.get_version())
+        ret = '<{0} \'{1}\'>'.format(self.__class__.__name__,
+                                     self.get_version())
         return ret
 
     def bump(self, level='patch'):
