@@ -14,6 +14,11 @@ setup(name='versionbump',
       author='Fabian Kochem',
       packages=find_packages(),
       install_requires=[
-          
+
       ],
+      entry_points={
+        'console_scripts': [
+            'versionbump = versionbump:main',
+        ]
+    }
 )
