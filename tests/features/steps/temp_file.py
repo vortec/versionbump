@@ -11,7 +11,7 @@ def make_temp_file(context, filename=None):
         filename = 'default'
     fp = os.path.join(folder, filename)
     open(fp, 'a').close()
-    context.cli_filenames.add(filename)
+    context.cli_filenames.add(fp)
     return fp
 
 def get_temp_file(context, filename=None):

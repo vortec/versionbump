@@ -6,9 +6,10 @@ import tempfile
 
 
 def before_scenario(context, scenario):
+    context.cli_args = []
     context.cli_filenames = set()
-    context.current_version = None
-    context.exit_code = None
+    context.process_output = None
+    context.process_exit_code = None
     context.test_data_folder = tempfile.mkdtemp()
 
 def after_scenario(context, scenario):
