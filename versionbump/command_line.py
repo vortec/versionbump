@@ -25,10 +25,12 @@ def main():
         fo = open(filename, 'r+')
         try:
             fb = FileBump(fo, current_version)
+            fb.bump(level)
         except ValueError:
             if args.ignore:
                 continue
-        fb.bump(level)
+            else:
+                raise
 
     new_version = vb.get()
     _output(new_version)
