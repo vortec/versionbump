@@ -9,7 +9,8 @@ except ImportError:
     from setuptools import setup, find_packages, Command
 
 
-description = 'Bump versions based on semantic versioning rules'
+description = 'Generate version strings based on semantic versioning rules.'
+long_description = str(open('README.rst', 'rb').read())
 
 setup(name='versionbump',
       version='1.0.0',
@@ -17,6 +18,7 @@ setup(name='versionbump',
       author='Fabian Kochem',
       url='https://github.com/vortec/versionbump',
       description=description,
+      long_description=long_description,
       packages=find_packages(),
       install_requires=[
 
