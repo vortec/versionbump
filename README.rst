@@ -2,7 +2,7 @@
 versionbump
 ============
 
-Helper tool to generate version strings based on `semantic versioning <http://semver.org/>`_ rules. It provides a shell command for using in bash scripts and comes with Python classes which you can integrate in your code.
+Helper tool to generate version strings based on `semantic versioning <http://semver.org/>`_ rules. It provides a shell command which you can use in bash scripts and comes with Python classes which you can integrate in your code.
 
 
 Installation
