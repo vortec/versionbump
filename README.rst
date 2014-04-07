@@ -76,9 +76,9 @@ FileBump
     from versionbump import FileBump
     fo = open('version.txt', 'r+')
     fb = FileBump(fo, '2.0.1')
-    vb.bump()              ## default value: 'patch', writes to file
-    print vb.get()         ## 2.0.2
-    print vb.get('patch')  ## 2
+    fb.bump()              ## default value: 'patch', writes to file
+    print fb.get()         ## 2.0.2
+    print fb.get('patch')  ## 2
 
 Alternatives
 ============
