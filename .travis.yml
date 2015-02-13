@@ -4,7 +4,9 @@ python:
     - 2.7
     - 3.4
     - pypy
-install: pip install .
+install:
+    - pip install .
+    - pip install behave
 script:
     - py.test
     - behave tests/features
