@@ -3,6 +3,12 @@ versionbump
 ============
 
 .. image:: https://travis-ci.org/vortec/versionbump.svg?branch=master
+   :target: https://travis-ci.org/vortec/versionbump
+   :alt: Travis CI
+
+.. image:: https://landscape.io/github/vortec/versionbump/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/vortec/versionbump/master
+   :alt: Code Health
 
 Helper tool to generate version strings based on `semantic versioning <http://semver.org/>`_ rules. It provides a shell command which you can use in bash scripts and comes with Python classes which you can integrate in your code.
 
