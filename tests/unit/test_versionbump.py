@@ -2,10 +2,15 @@ import pytest
 from versionbump import VersionBump
 
 test_version = '2.0.1'
+test_pre_version = '2.0.1-dev.3'
 
 @pytest.fixture
 def vb():
     return VersionBump(test_version)
+
+@pytest.fixture
+def vb_pre():
+    return VersionBump(test_pre_version)
 
 
 def test_same_version_after_parsing(vb):
@@ -15,6 +20,31 @@ def test_level_access(vb):
     assert vb.get_level('major') == 2
     assert vb.get_level('minor') == 0
     assert vb.get_level('patch') == 1
+    assert vb.get_level('pre') is None
+
+
+def test_is_pre_release(vb, vb_pre):
+    assert vb_pre.pre_release is True
+    assert vb.pre_release is False
+
+def test_pre_level_access(vb_pre):
+    assert vb_pre.get_level('pre') == 3
+
+def test_pre_bump(vb):
+    vb.bump('pre', label='dev')
+    assert vb.get_version() == '2.0.2-dev.0'
+    vb.bump()
+    assert vb.get_version() == '2.0.2-dev.1'
+    vb.bump('pre')
+    assert vb.get_version() == '2.0.2-dev.2'
+    vb.bump('patch')
+    assert vb.get_version() == '2.0.2'
+    vb.bump('pre', label='alpha')
+    assert vb.get_version() == '2.0.3-alpha.0'
+    vb.bump('minor')
+    assert vb.get_version() == '2.1.0'
+
+
 
 def test_bump():
     vb = VersionBump('2.0.1')
