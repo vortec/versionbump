@@ -9,7 +9,9 @@ parser.add_argument('-q', '--quiet', default=False, action='store_true',
                     help='Don\'t write anything to stdout.')
 parser.add_argument('-i', '--ignore', default=False, action='store_true',
                     help='Ignore invalid files.')
-parser.add_argument('level', choices=['major', 'minor', 'patch'])
+parser.add_argument('-l', '--label', default=None,
+                    help='Label for pre-release version tags.')
+parser.add_argument('level', choices=['major', 'minor', 'patch', 'pre'])
 parser.add_argument('file', nargs='*')
 args = parser.parse_args()
 
@@ -17,9 +19,10 @@ args = parser.parse_args()
 def main():
     current_version = args.current
     level = args.level
+    label = args.label
 
     vb = VersionBump(current_version)
-    vb.bump(level)
+    vb.bump(level, label)
 
     for filename in args.file:
         fo = open(filename, 'r+')

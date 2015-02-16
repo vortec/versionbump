@@ -12,11 +12,14 @@ def before_scenario(context, scenario):
     context.process_exit_code = None
     context.test_data_folder = tempfile.mkdtemp()
 
+
 def after_scenario(context, scenario):
     shutil.rmtree(context.test_data_folder)
 
 
 debug_flag = _bool(os.environ.get("DEBUG", "no"))
+
+
 def after_step(context, step):
     if debug_flag and step.status == "failed":
         pdb.post_mortem(step.exc_traceback)

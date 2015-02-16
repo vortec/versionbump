@@ -1,9 +1,13 @@
 import re
 
-_LEVELS = ['major', 'minor', 'patch']
-_REGEX = re.compile('^(?P<major>[0-9]+)'
+_LEVELS = ['major', 'minor', 'patch', 'pre']
+_REGEX = re.compile('^'
+                    '(?P<major>[0-9]+)'
                     '\.(?P<minor>[0-9]+)'
-                    '\.(?P<patch>[0-9]+)$')
+                    '\.(?P<patch>[0-9]+)'
+                    '(-(?P<label>[a-z]+)\.(?P<pre>[0-9]+))?'
+                    '$')
+
 
 def parse_version(version):
     match = _REGEX.match(version)
@@ -12,10 +16,11 @@ def parse_version(version):
 
     version_info = {}
     for level, number in match.groupdict().items():
-        if number:
+        if level in _LEVELS and number is not None:
             version_info[level] = int(number)
         else:
-            version_info[level] = None
+            version_info[level] = number
+
     return version_info
 
 
@@ -28,16 +33,51 @@ class VersionBump(object):
                                      self.get_version())
         return ret
 
-    def bump(self, level='patch'):
-        """ Bump version following semantic versioning rules. """
+    @property
+    def pre_release(self):
+        """ Return true if version is a pre-release. """
+        label = self.version_info.get('label', None)
+        pre = self.version_info.get('pre', None)
+
+        return True if (label is not None and pre is not None) else False
+
+    def _bump(self, level, label):
+        """ """
+        if self.pre_release:
+            self.remove_pre_release()
+            if level == 'patch':  # 2.0.3-dev.1 -> bump 'patch' -> 2.0.3
+                return
+
         self.version_info[level] += 1
         self.zeroize_after_level(level)
+
+    def _bump_pre(self, level, label):
+        """ """
+        if not label:
+            label = 'dev'
+
+        if not self.pre_release:
+            self.bump('patch', label=label)
+            self.version_info['label'] = label
+            self.version_info['pre'] = 0
+        else:
+            self.version_info[level] += 1
+
+    def bump(self, level='patch', label=None):
+        """ Bump version following semantic versioning rules. """
+        bump = self._bump_pre if level == 'pre' else self._bump
+        bump(level, label)
 
     def zeroize_after_level(self, base_level):
         """ Set all levels after ``base_level`` to zero. """
         index = _LEVELS.index(base_level) + 1
         for level in _LEVELS[index:]:
             self.version_info[level] = 0
+
+    def remove_pre_release(self):
+        """ Remove pre release attributes. """
+        self.version_info['label'] = None
+        self.version_info['pre'] = None
 
     def get(self, level=None):
         """ Return complete version string if called with no parameters.
@@ -51,9 +91,11 @@ class VersionBump(object):
     def get_version(self):
         """ Return complete version string. """
         version = '{major}.{minor}.{patch}'.format(**self.version_info)
+
+        if self.pre_release:
+            version = '{}-{label}.{pre}'.format(version, **self.version_info)
         return version
 
     def get_level(self, level):
         """ Return value of given level. """
         return self.version_info[level]
-

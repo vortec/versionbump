@@ -5,6 +5,7 @@ doesn't allow custom file names.
 
 import os
 
+
 def make_temp_file(context, filename=None):
     folder = context.test_data_folder
     if not filename:
@@ -13,6 +14,7 @@ def make_temp_file(context, filename=None):
     open(fp, 'a').close()
     context.cli_filenames.add(fp)
     return fp
+
 
 def get_temp_file(context, filename=None):
     folder = context.test_data_folder

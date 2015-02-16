@@ -1,2 +1,2 @@
-from .versionbump import VersionBump
-from .filebump import FileBump
+from .versionbump import VersionBump  # noqa
+from .filebump import FileBump  # noqa

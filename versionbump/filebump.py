@@ -1,5 +1,6 @@
 from versionbump import VersionBump
 
+
 class FileBump(object):
     file_cache = ''
 
