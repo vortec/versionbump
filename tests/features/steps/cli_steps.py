@@ -1,12 +1,15 @@
 import subprocess
 
+
 @given(u'we use parameter {parameter}')
 def step_impl(context, parameter):
     context.cli_args.append(*parameter.split(' '))
 
+
 @given(u'we assume version {version}')
 def step_impl(context, version):
     context.cli_args.extend(['-c', version])
+
 
 @when(u'we run versionbump {level}')
 def step_impl(context, level):
@@ -21,13 +24,16 @@ def step_impl(context, level):
     context.process_output = process.communicate()[0].strip()
     context.process_exit_code = process.poll()
 
+
 @then(u'the output was {text}')
 def step_impl(context, text):
     assert context.process_output == text
 
+
 @then(u'there was no output')
 def step_impl(context):
     assert context.process_output == ''
+
 
 @then(u'the exit code was {exit_code:d}')
 def step_impl(context, exit_code):

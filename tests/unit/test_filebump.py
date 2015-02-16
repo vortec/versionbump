@@ -7,17 +7,21 @@ from versionbump import FileBump
 
 test_version = '2.4.1'
 
+
 @pytest.fixture
 def fb():
     fo = StringIO(test_version)
     fb = FileBump(fo, test_version)
     return fb
 
+
 def test_file_gets_parsed_correctly(fb):
     assert fb.current_version == test_version
 
+
 def test_file_cache(fb):
     assert fb.file_cache == test_version
+
 
 def test_bump():
     version = '2.4.1'
@@ -25,6 +29,7 @@ def test_bump():
     fb = FileBump(fo, version)
     fb.bump('patch')
     assert fb.current_version == '2.4.2'
+
 
 def test_cache_write_to_file():
     version = '0.0.0'
@@ -36,9 +41,11 @@ def test_cache_write_to_file():
     fo.seek(0)
     assert fo.read() == match_against
 
+
 def test_print_output(fb):
     expected_string = '<FileBump \'{0}\'>'.format(test_version)
     assert str(fb) == expected_string
+
 
 def test_it_doesnt_find_the_version():
     empty_fo = StringIO('')
