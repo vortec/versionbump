@@ -33,10 +33,8 @@ def test_pre_level_access(vb_pre):
 def test_pre_bump(vb):
     vb.bump('pre', label='dev')
     assert vb.get_version() == '2.0.2-dev.0'
-    vb.bump()
-    assert vb.get_version() == '2.0.2-dev.1'
     vb.bump('pre')
-    assert vb.get_version() == '2.0.2-dev.2'
+    assert vb.get_version() == '2.0.2-dev.1'
     vb.bump('patch')
     assert vb.get_version() == '2.0.2'
     vb.bump('pre', label='alpha')
