@@ -13,7 +13,7 @@ description = 'Generate version strings based on semantic versioning rules.'
 long_description = str(open('README.rst', 'rb').read())
 
 setup(name='versionbump',
-      version='1.0.0',
+      version='1.1.0',
       license='MIT',
       author='Fabian Kochem',
       url='https://github.com/vortec/versionbump',
