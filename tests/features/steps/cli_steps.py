@@ -11,6 +11,11 @@ def step_impl(context, version):
     context.cli_args.extend(['-c', version])
 
 
+@given(u'we asusume label {label}')
+def step_impl(context, label):
+    context.cli_args.extend(['-l', label])
+
+
 @when(u'we run versionbump {level}')
 def step_impl(context, level):
     args = ['versionbump']
