@@ -5,12 +5,12 @@ from .versionbump import VersionBump
 parser = argparse.ArgumentParser()
 parser.add_argument('-c', '--current', required=True,
                     help='Assume current version. (required)')
+parser.add_argument('-l', '--label', default=None,
+                    help='Pre-release label.')
 parser.add_argument('-q', '--quiet', default=False, action='store_true',
                     help='Don\'t write anything to stdout.')
 parser.add_argument('-i', '--ignore', default=False, action='store_true',
                     help='Ignore invalid files.')
-parser.add_argument('-l', '--label', default=None,
-                    help='Label for pre-release version tags.')
 parser.add_argument('level', choices=['major', 'minor', 'patch', 'pre'])
 parser.add_argument('file', nargs='*')
 args = parser.parse_args()

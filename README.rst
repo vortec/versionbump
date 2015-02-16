@@ -27,11 +27,12 @@ Usage
 ::
 
     usage: versionbump [-h] -c CURRENT [-q] [-i]
-                   {major,minor,patch} [file [file ...]]
+                   {major,minor,patch,pre} [file [file ...]]
 
 Arguments
 +++++++++
 - ``-c`` / ``--current``: Assume current version. (required)
+- ``-l`` / ``--label``: Pre-release label.
 - ``-h`` / ``--help``: Print help text and exit.
 - ``-q`` / ``--quiet``: Don't write anything to stdout.
 - ``-i`` / ``--ignore``: Ignore invalid files
