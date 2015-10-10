@@ -4,7 +4,7 @@ python:
     - 3.4
     - pypy
 before_install:
-  - pip install codecov
+    - pip install codecov
 install:
     - pip install .
     - pip install behave dont-fudge-up
@@ -12,4 +12,4 @@ script:
     - py.test -v tests
     - behave tests/features
 after_success:
-  - codecov
+    - codecov
