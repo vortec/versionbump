@@ -32,6 +32,7 @@ class FileBump(object):
     def write_cache_to_file(self):
         self.fo.seek(0)
         self.fo.write(self.file_cache)
+        self.fo.truncate()
 
     def replace_version_in_cache(self, old_version, new_version):
         self.file_cache = self.file_cache.replace(old_version, new_version)
