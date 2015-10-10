@@ -51,3 +51,12 @@ def test_it_doesnt_find_the_version():
     empty_fo = StringIO('')
     with pytest.raises(ValueError):
         FileBump(empty_fo, '1.2.3')
+
+
+def test_it_truncates_the_file():
+    version = '0.0.111'
+    fo = StringIO(version)
+    fb = FileBump(fo, version)
+    fb.bump('minor')
+    fo.seek(0)
+    assert fo.read() == '0.1.0'
